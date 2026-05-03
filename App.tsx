@@ -56,7 +56,7 @@ const OVERLAY_COLORS = [
   { label: 'default (no prop)', value: undefined },
 ];
  
-function AppContent() {
+const AppContent = React.memo(() => {
   const [showChildren, setShowChildren] = useState(true);
  
   return (
@@ -207,7 +207,7 @@ function AppContent() {
  
     </ScrollView>
   );
-}
+});
  
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
