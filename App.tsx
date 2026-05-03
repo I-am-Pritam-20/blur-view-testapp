@@ -85,7 +85,7 @@ const AppContent = React.memo(() => {
       </Section>
  
       {/* TEST 2: overlayColor all formats */}
-      <Section title="TEST 2 — overlayColor all formats">
+      {/* <Section title="TEST 2 — overlayColor all formats">
         {OVERLAY_COLORS.map(({ label, value }) => (
           <ImageBackground key={label} source={require('./src/assets/jaadui.jpeg')} style={styles.tallBox}>
             <BlurView
@@ -100,10 +100,10 @@ const AppContent = React.memo(() => {
         <Text style={styles.note}>
           Expected: No crash on any format. "#00000000" = pure blur. "#000000FF" = solid black.
         </Text>
-      </Section>
+      </Section> */}
  
       {/* TEST 3: blurType iOS */}
-      <Section title={`TEST 3 — blurType (${Platform.OS === 'ios' ? 'iOS active' : 'Android no-op'})`}>
+      {/* <Section title={`TEST 3 — blurType (${Platform.OS === 'ios' ? 'iOS active' : 'Android no-op'})`}>
         {BLUR_TYPES.map((type) => (
           <ImageBackground key={type} source={require('./src/assets/jaadui.jpeg')} style={styles.tallBox}>
             <BlurView
@@ -118,10 +118,10 @@ const AppContent = React.memo(() => {
         <Text style={styles.note}>
           iOS: Each shows a different blur material. Android: All same, no crash.
         </Text>
-      </Section>
+      </Section> */}
  
       {/* TEST 4: blurRadius */}
-      <Section title="TEST 4 — blurRadius (Android downscale 1–8)">
+      {/* <Section title="TEST 4 — blurRadius (Android downscale 1–8)">
         <View style={styles.row}>
           {[1, 2, 4, 6, 8].map((radius) => (
             <ImageBackground key={radius} source={require('./src/assets/jaadui.jpeg')} style={styles.smallBox}>
@@ -138,10 +138,10 @@ const AppContent = React.memo(() => {
         <Text style={styles.note}>
           Android: Higher = slightly softer/faster. iOS: No difference (prop ignored).
         </Text>
-      </Section>
+      </Section> */}
  
       {/* TEST 5: reducedTransparencyFallbackColor */}
-      <Section title="TEST 5 — reducedTransparencyFallbackColor">
+      {/* <Section title="TEST 5 — reducedTransparencyFallbackColor">
         <ImageBackground source={require('./src/assets/jaadui.jpeg')} style={styles.tallBox}>
           <BlurView
             blurAmount={15}
@@ -158,9 +158,9 @@ const AppContent = React.memo(() => {
           iOS: Enable Reduce Transparency → should show red. Android: Normal blur shown.
         </Text>
       </Section>
- 
+  */}
       {/* TEST 6: Children above blur */}
-      <Section title="TEST 6 — Children render above blur layer">
+      {/* <Section title="TEST 6 — Children render above blur layer">
         <ImageBackground source={require('./src/assets/jaadui.jpeg')} style={styles.tallBox}>
           <BlurView
             blurAmount={15}
@@ -180,10 +180,10 @@ const AppContent = React.memo(() => {
         <Text style={styles.note}>
           Expected: Text and Switch visible above blur on both platforms.
         </Text>
-      </Section>
+      </Section> */}
  
       {/* TEST 7: Edge cases */}
-      <Section title="TEST 7 — Edge cases (should not crash)">
+      {/* <Section title="TEST 7 — Edge cases (should not crash)">
         <View style={styles.row}>
           <ImageBackground source={require('./src/assets/jaadui.jpeg')} style={styles.smallBox}>
             <BlurView blurAmount={0} style={StyleSheet.absoluteFill} />
@@ -203,7 +203,7 @@ const AppContent = React.memo(() => {
         <Text style={styles.note}>
           Expected: No crash on any edge case.
         </Text>
-      </Section>
+      </Section> */}
  
     </ScrollView>
   );
