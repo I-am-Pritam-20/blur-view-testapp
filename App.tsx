@@ -26,9 +26,9 @@ function App() {
   );
 }
  
-const BG_IMAGE = {
-  uri: 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800',
-};
+// const BG_IMAGE = {
+//   uri: './src/assets/jaadui.jpeg',
+// };
  
 const BLUR_TYPES: BlurType[] = [
   'light',
@@ -73,7 +73,7 @@ function AppContent() {
       <Section title="TEST 1 — blurAmount (0, 5, 15, 30, 60, 100)">
         <View style={styles.row}>
           {[0, 5, 15, 30, 60, 100].map((amount) => (
-            <ImageBackground key={amount} source={BG_IMAGE} style={styles.smallBox}>
+            <ImageBackground key={amount} source={require('./src/assets/jaadui.jpeg')} style={styles.smallBox}>
               <BlurView blurAmount={amount} overlayColor="#00000000" style={StyleSheet.absoluteFill} />
               <Text style={styles.label}>{amount}</Text>
             </ImageBackground>
@@ -87,7 +87,7 @@ function AppContent() {
       {/* TEST 2: overlayColor all formats */}
       <Section title="TEST 2 — overlayColor all formats">
         {OVERLAY_COLORS.map(({ label, value }) => (
-          <ImageBackground key={label} source={BG_IMAGE} style={styles.tallBox}>
+          <ImageBackground key={label} source={require('./src/assets/jaadui.jpeg')} style={styles.tallBox}>
             <BlurView
               blurAmount={15}
               overlayColor={value}
@@ -105,7 +105,7 @@ function AppContent() {
       {/* TEST 3: blurType iOS */}
       <Section title={`TEST 3 — blurType (${Platform.OS === 'ios' ? 'iOS active' : 'Android no-op'})`}>
         {BLUR_TYPES.map((type) => (
-          <ImageBackground key={type} source={BG_IMAGE} style={styles.tallBox}>
+          <ImageBackground key={type} source={require('./src/assets/jaadui.jpeg')} style={styles.tallBox}>
             <BlurView
               blurAmount={15}
               blurType={type}
@@ -124,7 +124,7 @@ function AppContent() {
       <Section title="TEST 4 — blurRadius (Android downscale 1–8)">
         <View style={styles.row}>
           {[1, 2, 4, 6, 8].map((radius) => (
-            <ImageBackground key={radius} source={BG_IMAGE} style={styles.smallBox}>
+            <ImageBackground key={radius} source={require('./src/assets/jaadui.jpeg')} style={styles.smallBox}>
               <BlurView
                 blurAmount={20}
                 blurRadius={radius}
@@ -142,7 +142,7 @@ function AppContent() {
  
       {/* TEST 5: reducedTransparencyFallbackColor */}
       <Section title="TEST 5 — reducedTransparencyFallbackColor">
-        <ImageBackground source={BG_IMAGE} style={styles.tallBox}>
+        <ImageBackground source={require('./src/assets/jaadui.jpeg')} style={styles.tallBox}>
           <BlurView
             blurAmount={15}
             overlayColor="#00000030"
@@ -161,7 +161,7 @@ function AppContent() {
  
       {/* TEST 6: Children above blur */}
       <Section title="TEST 6 — Children render above blur layer">
-        <ImageBackground source={BG_IMAGE} style={styles.tallBox}>
+        <ImageBackground source={require('./src/assets/jaadui.jpeg')} style={styles.tallBox}>
           <BlurView
             blurAmount={15}
             overlayColor="#00000040"
@@ -185,17 +185,17 @@ function AppContent() {
       {/* TEST 7: Edge cases */}
       <Section title="TEST 7 — Edge cases (should not crash)">
         <View style={styles.row}>
-          <ImageBackground source={BG_IMAGE} style={styles.smallBox}>
+          <ImageBackground source={require('./src/assets/jaadui.jpeg')} style={styles.smallBox}>
             <BlurView blurAmount={0} style={StyleSheet.absoluteFill} />
             <Text style={styles.label}>amt=0</Text>
           </ImageBackground>
  
-          <ImageBackground source={BG_IMAGE} style={styles.smallBox}>
+          <ImageBackground source={require('./src/assets/jaadui.jpeg')} style={styles.smallBox}>
             <BlurView style={StyleSheet.absoluteFill} />
             <Text style={styles.label}>defaults</Text>
           </ImageBackground>
  
-          <ImageBackground source={BG_IMAGE} style={[styles.smallBox, { width: 30, height: 30 }]}>
+          <ImageBackground source={require('./src/assets/jaadui.jpeg')} style={[styles.smallBox, { width: 30, height: 30 }]}>
             <BlurView blurAmount={10} style={StyleSheet.absoluteFill} />
             <Text style={[styles.label, { fontSize: 8 }]}>tiny</Text>
           </ImageBackground>
