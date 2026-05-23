@@ -12,6 +12,7 @@ import {
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BlurView } from 'react-native-blur-vibe';
 import type { BlurType } from 'react-native-blur-vibe';
+import Slider from '@react-native-community/slider';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -59,6 +60,14 @@ const AppContent = React.memo(() => {
  
   return (
     <View style={[styles.outer]}>
+      <Slider style={{height: 12, width: '86%', alignSelf: 'center'}}
+        minimumValue={0}
+        maximumValue={1}
+        minimumTrackTintColor='#ffffff'
+        maximumTrackTintColor='#66666675'
+        thumbSize={16}
+        thumbTintColor='#ffffff'
+      />
       <ScrollView style={[styles.container,{paddingTop: insets.top, paddingBottom: insets.bottom}]} contentContainerStyle={[styles.content]}>
         {Array.from({length: 20}).map((_, index) => (
           <View key={index} style={styles.dummyview}>
