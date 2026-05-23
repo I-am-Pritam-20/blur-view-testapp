@@ -68,7 +68,7 @@ const AppContent = React.memo(() => {
         ))}
       </ScrollView>
 
-      <BlurView blurAmount={60} enabled overlayColor='#c6efffad' style={styles.tabBar}/>
+      <BlurView blurAmount={60} overlayColor='#c6efffad' style={styles.tabBar}/>
     </View>
     
   );
