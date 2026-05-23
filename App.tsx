@@ -4,12 +4,12 @@ import {
   Text,
   ScrollView,
   StyleSheet,
-  ImageBackground,
+  Image,
   Platform,
   Switch,
   StatusBar, useColorScheme
 } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BlurView } from 'react-native-blur-vibe';
 import type { BlurType } from 'react-native-blur-vibe';
 
@@ -18,10 +18,7 @@ function App() {
 
   return (
     <SafeAreaProvider>
-      <View style={{backgroundColor: '#000000', flex: 1}}>
-        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
         <AppContent />
-      </View>
     </SafeAreaProvider>
   );
 }
@@ -57,155 +54,23 @@ const OVERLAY_COLORS = [
 ];
  
 const AppContent = React.memo(() => {
+  const insets = useSafeAreaInsets();
   const [showChildren, setShowChildren] = useState(true);
  
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <StatusBar barStyle="light-content" />
- 
-      <Text style={styles.header}>react-native-blur-vibe</Text>
-      <Text style={styles.subheader}>Prop Compatibility Test Suite</Text>
-      <Text style={styles.platform}>
-        Platform: {Platform.OS} {Platform.Version}
-      </Text>
- 
-      {/* TEST 1: blurAmount range */}
-      <Section title="TEST 1 — blurAmount (0, 5, 15, 30, 60, 100)">
-        <View style={styles.row}>
-          {[0, 5, 15, 30, 60, 100].map((amount) => (
-            <ImageBackground key={amount} source={require('./src/assets/jaadui.jpeg')} style={styles.smallBox}>
-              <BlurView blurAmount={amount} overlayColor="#00000000" style={StyleSheet.absoluteFill} />
-              <Text style={styles.label}>{amount}</Text>
-            </ImageBackground>
-          ))}
-        </View>
-        <Text style={styles.note}>
-          Expected: 0 = no blur, 100 = max blur. No crash on any value.
-        </Text>
-      </Section>
- 
-      {/* TEST 2: overlayColor all formats */}
-      {/* <Section title="TEST 2 — overlayColor all formats">
-        {OVERLAY_COLORS.map(({ label, value }) => (
-          <ImageBackground key={label} source={require('./src/assets/jaadui.jpeg')} style={styles.tallBox}>
-            <BlurView
-              blurAmount={15}
-              overlayColor={value}
-              style={StyleSheet.absoluteFill}
-            />
-            <Text style={styles.overlayLabel}>{label}</Text>
-            <Text style={styles.overlayValue}>{value ?? 'undefined (platform default)'}</Text>
-          </ImageBackground>
+    <View style={[styles.outer]}>
+      <ScrollView style={[styles.container,{paddingTop: insets.top, paddingBottom: insets.bottom}]} contentContainerStyle={[styles.content]}>
+        {Array.from({length: 20}).map((_, index) => (
+          <View key={index} style={styles.dummyview}>
+            <Image key={index} source={require('./src/assets/jaadui.jpeg')} resizeMode='cover'/>
+            <Text key={index+ 1} style={styles.dummyText}>This is View {index + 1}</Text>
+          </View>
         ))}
-        <Text style={styles.note}>
-          Expected: No crash on any format. "#00000000" = pure blur. "#000000FF" = solid black.
-        </Text>
-      </Section> */}
- 
-      {/* TEST 3: blurType iOS */}
-      {/* <Section title={`TEST 3 — blurType (${Platform.OS === 'ios' ? 'iOS active' : 'Android no-op'})`}>
-        {BLUR_TYPES.map((type) => (
-          <ImageBackground key={type} source={require('./src/assets/jaadui.jpeg')} style={styles.tallBox}>
-            <BlurView
-              blurAmount={15}
-              blurType={type}
-              overlayColor="#00000000"
-              style={StyleSheet.absoluteFill}
-            />
-            <Text style={styles.overlayLabel}>{type}</Text>
-          </ImageBackground>
-        ))}
-        <Text style={styles.note}>
-          iOS: Each shows a different blur material. Android: All same, no crash.
-        </Text>
-      </Section> */}
- 
-      {/* TEST 4: blurRadius */}
-      {/* <Section title="TEST 4 — blurRadius (Android downscale 1–8)">
-        <View style={styles.row}>
-          {[1, 2, 4, 6, 8].map((radius) => (
-            <ImageBackground key={radius} source={require('./src/assets/jaadui.jpeg')} style={styles.smallBox}>
-              <BlurView
-                blurAmount={20}
-                blurRadius={radius}
-                overlayColor="#00000000"
-                style={StyleSheet.absoluteFill}
-              />
-              <Text style={styles.label}>r={radius}</Text>
-            </ImageBackground>
-          ))}
-        </View>
-        <Text style={styles.note}>
-          Android: Higher = slightly softer/faster. iOS: No difference (prop ignored).
-        </Text>
-      </Section> */}
- 
-      {/* TEST 5: reducedTransparencyFallbackColor */}
-      {/* <Section title="TEST 5 — reducedTransparencyFallbackColor">
-        <ImageBackground source={require('./src/assets/jaadui.jpeg')} style={styles.tallBox}>
-          <BlurView
-            blurAmount={15}
-            overlayColor="#00000030"
-            reducedTransparencyFallbackColor="#FF6B6B"
-            style={StyleSheet.absoluteFill}
-          />
-          <Text style={styles.overlayLabel}>fallback: #FF6B6B (coral red)</Text>
-          <Text style={styles.overlayValue}>
-            Enable Reduce Transparency in iOS Accessibility to see red
-          </Text>
-        </ImageBackground>
-        <Text style={styles.note}>
-          iOS: Enable Reduce Transparency → should show red. Android: Normal blur shown.
-        </Text>
-      </Section>
-  */}
-      {/* TEST 6: Children above blur */}
-      {/* <Section title="TEST 6 — Children render above blur layer">
-        <ImageBackground source={require('./src/assets/jaadui.jpeg')} style={styles.tallBox}>
-          <BlurView
-            blurAmount={15}
-            overlayColor="#00000040"
-            style={StyleSheet.absoluteFill}
-          >
-            <View style={styles.childBox}>
-              <Text style={styles.childText}>Child view above blur ✅</Text>
-              <Switch
-                value={showChildren}
-                onValueChange={setShowChildren}
-                thumbColor="#fff"
-              />
-            </View>
-          </BlurView>
-        </ImageBackground>
-        <Text style={styles.note}>
-          Expected: Text and Switch visible above blur on both platforms.
-        </Text>
-      </Section> */}
- 
-      {/* TEST 7: Edge cases */}
-      {/* <Section title="TEST 7 — Edge cases (should not crash)">
-        <View style={styles.row}>
-          <ImageBackground source={require('./src/assets/jaadui.jpeg')} style={styles.smallBox}>
-            <BlurView blurAmount={0} style={StyleSheet.absoluteFill} />
-            <Text style={styles.label}>amt=0</Text>
-          </ImageBackground>
- 
-          <ImageBackground source={require('./src/assets/jaadui.jpeg')} style={styles.smallBox}>
-            <BlurView style={StyleSheet.absoluteFill} />
-            <Text style={styles.label}>defaults</Text>
-          </ImageBackground>
- 
-          <ImageBackground source={require('./src/assets/jaadui.jpeg')} style={[styles.smallBox, { width: 30, height: 30 }]}>
-            <BlurView blurAmount={10} style={StyleSheet.absoluteFill} />
-            <Text style={[styles.label, { fontSize: 8 }]}>tiny</Text>
-          </ImageBackground>
-        </View>
-        <Text style={styles.note}>
-          Expected: No crash on any edge case.
-        </Text>
-      </Section> */}
- 
-    </ScrollView>
+      </ScrollView>
+
+      <BlurView blurAmount={60} enabled overlayColor='#c6efffad' style={styles.tabBar}/>
+    </View>
+    
   );
 });
  
@@ -221,8 +86,12 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 export default App;
  
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#0f0f0f' },
-  content: { padding: 16, paddingBottom: 60 },
+  outer: { flex: 1, backgroundColor: '#1a0067',},
+  container: { flex: 1, backgroundColor: 'transparent' , paddingHorizontal: 14},
+  content: { gap: 14 },
+  dummyview: {height : 140, borderWidth: 1, borderRadius: 12, borderColor: '#bdbdbd', backgroundColor: '#66666675', overflow: 'hidden', textAlign: 'center'},
+  dummyText: {fontSize: 14, fontWeight: 'bold', color: '#ffffff', zIndex: 5, position: 'absolute', alignSelf: 'center'},
+  tabBar: { position: 'absolute', zIndex: 100, marginHorizontal: 8, bottom: 8, height: 64, width: '95%', borderRadius: 100, borderWidth: 1, borderColor: '#ffffff'},
   header: { fontSize: 22, fontWeight: '700', color: '#ffffff', marginTop: 48, marginBottom: 4 },
   subheader: { fontSize: 14, color: '#888', marginBottom: 4 },
   platform: { fontSize: 12, color: '#555', marginBottom: 24 },
