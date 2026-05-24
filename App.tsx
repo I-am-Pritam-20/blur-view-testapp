@@ -12,7 +12,6 @@ import {
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BlurView } from 'react-native-blur-vibe';
 import type { BlurType } from 'react-native-blur-vibe';
-import Slider from '@react-native-community/slider';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -60,14 +59,6 @@ const AppContent = React.memo(() => {
  
   return (
     <View style={[styles.outer]}>
-      <Slider style={{height: 12, width: '86%', alignSelf: 'center'}}
-        minimumValue={0}
-        maximumValue={1}
-        minimumTrackTintColor='#ffffff'
-        maximumTrackTintColor='#66666675'
-        thumbSize={16}
-        thumbTintColor='#ffffff'
-      />
       <ScrollView style={[styles.container,{paddingTop: insets.top, paddingBottom: insets.bottom}]} contentContainerStyle={[styles.content]}>
         {Array.from({length: 20}).map((_, index) => (
           <View key={index} style={styles.dummyview}>
@@ -77,7 +68,7 @@ const AppContent = React.memo(() => {
         ))}
       </ScrollView>
 
-      <BlurView blurAmount={60} overlayColor='#c6efffad' style={styles.tabBar}/>
+      <BlurView blurAmount={100} overlayColor='#c6efffad' style={styles.tabBar}/>
     </View>
     
   );
@@ -95,7 +86,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 export default App;
  
 const styles = StyleSheet.create({
-  outer: { flex: 1, backgroundColor: '#1a0067',},
+  outer: { flex: 1, backgroundColor: '#04000e',},
   container: { flex: 1, backgroundColor: 'transparent' , paddingHorizontal: 14},
   content: { gap: 14 },
   dummyview: {height : 140, borderWidth: 1, borderRadius: 12, borderColor: '#bdbdbd', backgroundColor: '#66666675', overflow: 'hidden', textAlign: 'center'},
