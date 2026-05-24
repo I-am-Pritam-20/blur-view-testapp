@@ -68,7 +68,7 @@ const AppContent = React.memo(() => {
         ))}
       </ScrollView>
 
-      <BlurView blurAmount={100} overlayColor='#c6efffad' style={styles.tabBar}/>
+      <BlurView blurAmount={30} overlayColor='#beedff54' style={styles.tabBar}/>
     </View>
     
   );
@@ -86,8 +86,8 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 export default App;
  
 const styles = StyleSheet.create({
-  outer: { flex: 1, backgroundColor: '#04000e',},
-  container: { flex: 1, backgroundColor: 'transparent' , paddingHorizontal: 14},
+  outer: { flex: 1, backgroundColor: '#000969',},
+  container: { flex: 1, backgroundColor: 'transparent' , },
   content: { gap: 14 },
   dummyview: {height : 140, borderWidth: 1, borderRadius: 12, borderColor: '#bdbdbd', backgroundColor: '#66666675', overflow: 'hidden', textAlign: 'center'},
   dummyText: {fontSize: 14, fontWeight: 'bold', color: '#ffffff', zIndex: 5, position: 'absolute', alignSelf: 'center'},
