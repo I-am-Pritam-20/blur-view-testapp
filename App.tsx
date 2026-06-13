@@ -10,7 +10,7 @@ import {
   StatusBar, useColorScheme
 } from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { BlurView } from 'react-native-blur-vibe';
+import {BlurView} from 'react-native-blur-vibe';
 import type { BlurType } from 'react-native-blur-vibe';
 
 function App() {
@@ -68,7 +68,7 @@ const AppContent = React.memo(() => {
         ))}
       </ScrollView>
 
-      <BlurView blurAmount={100} enabled blurRadius={100} noiseFactor={0} overlayColor='#beedff54' style={styles.tabBar}/>
+      <BlurView blurAmount={50} noiseFactor={0} overlayColor='#0594cc54' style={[styles.tabBar, {borderWidth: 2, borderColor: 'red'}]}/>
     </View>
     
   );
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   content: { gap: 14 },
   dummyview: {height : 140, borderWidth: 1, borderRadius: 12, borderColor: '#bdbdbd', backgroundColor: '#66666675', overflow: 'hidden', textAlign: 'center'},
   dummyText: {fontSize: 14, fontWeight: 'bold', color: '#ffffff', zIndex: 5, position: 'absolute', alignSelf: 'center'},
-  tabBar: { position: 'absolute', zIndex: 100, marginHorizontal: 8, bottom: 8, height: 64, width: '95%', borderRadius: 60, borderWidth: 1, borderColor: '#ffffff'},
+  tabBar: { position: 'absolute', zIndex: 100, bottom: 8, height: 64, width: '100%'},
   header: { fontSize: 22, fontWeight: '700', color: '#ffffff', marginTop: 48, marginBottom: 4 },
   subheader: { fontSize: 14, color: '#888', marginBottom: 4 },
   platform: { fontSize: 12, color: '#555', marginBottom: 24 },
