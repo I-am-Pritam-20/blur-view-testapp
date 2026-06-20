@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, Image, StyleSheet, Dimensions, useColorScheme, StatusBar} from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
-import {BlurView} from 'react-native-blur-vibe';
+import { BlurView } from 'react-native-blur-vibe';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -30,7 +30,7 @@ const AppContent = React.memo(() => {
       </ScrollView>
 
       <View style={[styles.blurContainer, {width : width - 16}]}>
-        <BlurView blurAmount={6} noiseFactor={0} overlayColor='#0594cc54' style={[StyleSheet.absoluteFill]} />
+        <BlurView blurAmount={10} noiseFactor={0} overlayColor='#0594cc54' style={[StyleSheet.absoluteFill]} />
       </View>
       
     </View>
