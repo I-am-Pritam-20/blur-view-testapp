@@ -30,7 +30,7 @@ const AppContent = React.memo(() => {
       </ScrollView>
 
       <View style={[styles.blurContainer, {width : width - 16}]}>
-        <BlurView blurAmount={100} noiseFactor={0} overlayColor='#0594cc54' style={[StyleSheet.absoluteFill]} />
+        <BlurView blurAmount={6} noiseFactor={0} overlayColor='#0594cc54' style={[StyleSheet.absoluteFill]} />
       </View>
       
     </View>
