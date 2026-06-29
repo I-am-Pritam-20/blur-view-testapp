@@ -8,7 +8,7 @@ function App() {
 
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} translucent backgroundColor={'#00000001'}/>
+      <StatusBar barStyle={'light-content'} translucent backgroundColor={'#00000001'}/>
       <AppContent />
     </SafeAreaProvider>
   );
@@ -20,7 +20,7 @@ const AppContent = React.memo(() => {
  
   return (
     <View style={[styles.outer]}>
-      <ScrollView style={[styles.container]} contentContainerStyle={[styles.content,{paddingTop: insets.top, paddingBottom: insets.bottom + 80}]}>
+      <ScrollView overScrollMode='never' alwaysBounceVertical={false} alwaysBounceHorizontal={false} style={[styles.container]} contentContainerStyle={[styles.content,{paddingTop: insets.top, paddingBottom: insets.bottom + 80}]}>
         {Array.from({length: 100}).map((_, index) => (
           <View key={index} style={styles.dummyview}>
             <Image key={index} source={require('./src/assets/jaadui.jpeg')} resizeMode='cover'/>
@@ -29,8 +29,8 @@ const AppContent = React.memo(() => {
         ))}
       </ScrollView>
 
-      <View style={[styles.blurContainer, {width : width - 16}]}>
-        <BlurView blurAmount={10} noiseFactor={0} overlayColor='#0594cc54' style={[StyleSheet.absoluteFill]} />
+      <View style={[styles.blurContainer, {width : width - 16 , bottom: insets.bottom + 8,}]}>
+        <BlurView blurAmount={50} noiseFactor={0} overlayColor='#0594cc54' style={[StyleSheet.absoluteFill]} />
       </View>
       
     </View>
@@ -46,5 +46,5 @@ const styles = StyleSheet.create({
   content: { gap: 14 , paddingHorizontal: 14},
   dummyview: {height : 140, borderWidth: 1, borderRadius: 12, borderColor: '#bdbdbd', backgroundColor: '#66666675', overflow: 'hidden', textAlign: 'center'},
   dummyText: {fontSize: 14, fontWeight: 'bold', color: '#ffffff', zIndex: 5, position: 'absolute', alignSelf: 'center'},
-  blurContainer: {position: 'absolute', zIndex: 100, bottom: 8, height: 64, marginInline: 8, borderRadius: 80, overflow: 'hidden', borderWidth: 1, borderColor: '#0594cc00', boxShadow: '0px 0px 28px #ffffff45'}
+  blurContainer: {position: 'absolute', zIndex: 100, height: 64, marginInline: 8, borderRadius: 80, overflow: 'hidden', borderWidth: 1, borderColor: '#0594cc00', boxShadow: '0px 0px 28px #ffffff45'}
 });
