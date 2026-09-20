@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, Image, StyleSheet, Dimensions, useColorScheme, StatusBar, ImageBackground} from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { BlurView } from 'react-native-blur-vibe';
+import { BlurView, LiquidGlassView } from 'react-native-blur-vibe';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -38,7 +38,8 @@ const AppContent = React.memo(() => {
       {/* <Image source={require('./src/assets/jaadui.jpeg')} resizeMode='cover' style={{height: '100%'}}/> */}
 
       <View style={[styles.blurContainer, {width : width - 16 , bottom: insets.bottom + 8,}]}>
-        <BlurView blurAmount={1} noiseFactor={0} overlayColor='#0594cc54' autoUpdate style={[StyleSheet.absoluteFill]} />
+        {/* <BlurView blurAmount={38} noiseFactor={0} overlayColor='#0594cc54' autoUpdate style={[StyleSheet.absoluteFill]} /> */}
+        <LiquidGlassView refractionAmount={45} blurAmount={10} style={[StyleSheet.absoluteFill]}/>
         {/* <BlurView blurAmount={100} progressiveBlurDirection="bottomToTop"
           progressiveStartIntensity={1}
           progressiveEndIntensity={0}
